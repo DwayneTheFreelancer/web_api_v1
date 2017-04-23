@@ -1,0 +1,192 @@
+* {
+  box-sizing: border-box; }
+
+a {
+  text-decoration: none; }
+
+li {
+  list-style: none; }
+
+img {
+  max-width: 100%; }
+
+/*body {
+    max-width: 100%;
+}*/
+.body-container {
+  width: 90%;
+  margin: 0 auto; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: 400 1em Open Sans; }
+
+body {
+  background: #EEEEEE; }
+
+@keyframes openUp {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0; }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1; } }
+.searchInput {
+  display: block;
+  border: none;
+  outline: none;
+  padding: 5px 0;
+  margin: 20px auto;
+  font-size: 16px;
+  border-bottom: 1px solid black;
+  position: relative;
+  background: transparent; }
+  .searchInput:focus {
+    border-bottom: 2px solid black; }
+
+.albumWrapper {
+  margin: 0.5em;
+  text-align: center; }
+  .albumWrapper .album {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0.5em;
+    transition: all 0.2s cubic-bezier(0.77, 0.2, 0.05, 1);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+    .albumWrapper .album .info {
+      position: absolute;
+      margin-right: 1em;
+      bottom: -100%;
+      left: -100%;
+      transform: scale(0);
+      text-align: left;
+      color: white;
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.77, 0.2, 0.05, 1); }
+      .albumWrapper .album .info span:first-of-type {
+        font: 700 1.25em Open Sans; }
+    .albumWrapper .album .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: all 0.2s cubic-bezier(0.77, 0.2, 0.05, 1);
+      user-select: none; }
+    .albumWrapper .album:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+      .albumWrapper .album:hover .overlay {
+        opacity: 1; }
+      .albumWrapper .album:hover .info {
+        margin-right: 1em;
+        bottom: 1em;
+        left: 1em;
+        transform: scale(1); }
+
+.modalOverlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1; }
+
+.albumModal {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  padding: 1em;
+  animation: openUp 0.1s;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); }
+  .albumModal .modalContents .fa-close {
+    position: absolute;
+    top: 0.3em;
+    right: 0.35em;
+    font-size: 1.25em;
+    cursor: pointer; }
+  .albumModal .modalContents .playPause {
+    position: absolute;
+    bottom: 0.25em;
+    right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.77, 0.2, 0.05, 1); }
+    .albumModal .modalContents .playPause.pause:after {
+      content: "\f04b"; }
+    .albumModal .modalContents .playPause.play:after {
+      content: "\f04c"; }
+  .albumModal .modalContents > div {
+    display: inline-block;
+    vertical-align: top; }
+    .albumModal .modalContents > div.albumart {
+      float: left; }
+    .albumModal .modalContents > div.info {
+      padding-left: 1em;
+      padding-bottom: 1em;
+      width: 100%;
+      max-width: 360px; }
+      .albumModal .modalContents > div.info span {
+        display: block; }
+        .albumModal .modalContents > div.info span:first-of-type {
+          font: 700 1.25em Open Sans; }
+        .albumModal .modalContents > div.info span:nth-of-type(2) {
+          font: italic 400 1.1em/1.1em Open Sans; }
+    .albumModal .modalContents > div.tracks {
+      display: inline-block;
+      margin: 0 auto;
+      margin-left: 1em;
+      padding: 0.25em 0;
+      max-height: 216px;
+      width: 100%;
+      max-width: 52.5%;
+      overflow-y: scroll;
+      box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.5); }
+      .albumModal .modalContents > div.tracks .playing {
+        background: rgba(25, 25, 25, 0.75);
+        color: white; }
+      .albumModal .modalContents > div.tracks div {
+        cursor: pointer; }
+        .albumModal .modalContents > div.tracks div span {
+          display: inline-block; }
+          .albumModal .modalContents > div.tracks div span.trackNumber {
+            padding: 0 0.25em 0 0.5em;
+            vertical-align: top; }
+          .albumModal .modalContents > div.tracks div span.trackName {
+            max-width: 265px; }
+          .albumModal .modalContents > div.tracks div span.time {
+            float: right;
+            padding-right: 0.5em; }
+  @media (max-width: 767px) {
+    .albumModal .modalContents > div {
+      float: none !important;
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      padding-left: 0; }
+      .albumModal .modalContents > div.info {
+        margin-top: 1em; }
+      .albumModal .modalContents > div.tracks {
+        display: block;
+        text-align: left;
+        margin: 0 auto;
+        max-width: none; } }
+
+/*# sourceMappingURL=main.css.map */
